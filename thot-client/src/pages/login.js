@@ -13,37 +13,40 @@ import Button from '@material-ui/core/Button'
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const styles = {
-form:{
-    textAlign: 'center'
-},
-logo:{
-    margin: '20px auto 15px auto',
-    width: 50,
-},
-
-pageTitle:{
-    fontSize: 30,
-    margin: '10px auto 10px auto'
-},
-
-TextField:{
-    margin: '10px auto 10px auto'
-},
-button:{
-    marginTop: 20,
-    position: 'relative'
-},
-customError:{
-    color: 'red',
-    fontSize: '0.8rem',
-    marginTop: 10
-},
-
-progress:{
-    position: 'absolute'
+    typography:{
+        useNextVariants: true
+      },
+      
+    form:{
+        textAlign: 'center'
+    },
+    logo:{
+        margin: '20px auto 15px auto',
+        width: 50,
+    },
+    
+    pageTitle:{
+        fontSize: 30,
+        margin: '10px auto 10px auto'
+    },
+    
+    TextField:{
+        margin: '10px auto 10px auto'
+    },
+    button:{
+        marginTop: 20,
+        position: 'relative'
+    },
+    customError:{
+        color: 'red',
+        fontSize: '0.8rem',
+        marginTop: 10
+    },
+    progress:{
+        position: 'absolute'
+    } 
 }
 
-}
 
 export class login extends Component {
     constructor(){
@@ -68,6 +71,7 @@ export class login extends Component {
         axios.post('/login', userData)
             .then(res => {
                 console.log(res.data)
+                localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`)
                 this.setState({
                     loading: false
                 })
@@ -111,7 +115,6 @@ export class login extends Component {
                 </Grid>
                 <Grid item sm/>                    
             </Grid>
-
     );
     }
 }
